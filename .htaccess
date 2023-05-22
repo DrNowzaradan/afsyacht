@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  #enforce https
+  RewriteCond %{SERVER_PORT} 80
+  RewriteRule ^/?(.*) https://afsyacht.com/$1 [R,L]
+  #rewrite non-existent uris to /index.html
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule (.*) /index.html [L]
+</IfModule>
